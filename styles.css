@@ -5,12 +5,20 @@
 /* --- CSS Custom Properties (Design Tokens) --- */
 :root {
   /* Colors - Light Theme */
-  --color-primary: #E63946;
-  --color-bg: #FAFAFA;
-  --color-surface: #FFFFFF;
-  --color-text: #121212;
-  --color-text-muted: #6B7280;
-  --color-border: #E5E7EB;
+  /* Palette extracted from photo */
+  --dt-red: #E31B23;
+  --dt-red-dark: #B51516;
+  --dt-red-light: #FF5B5B;
+  --dt-white: #FFFFFF;
+  --dt-ink: #1A1A1A;
+  --dt-muted: #F6F6F6;
+
+  --color-primary: var(--dt-red);
+  --color-bg: var(--dt-white);
+  --color-surface: var(--dt-white);
+  --color-text: var(--dt-ink);
+  --color-text-muted: #9CA3AF;
+  --color-border: var(--dt-muted);
   
   /* Typography */
   --font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
@@ -48,6 +56,16 @@
   --color-text-muted: #9CA3AF;
   --color-border: #374151;
 }
+
+/* --- Brand Theme (from photo) --- */
+body.brand {
+  /* Override core color tokens with the extracted palette so the rest of the stylesheet adapts */
+  --color-bg: var(--dt-red);
+  --color-surface: var(--dt-red);
+  --color-text: var(--dt-white);
+  --color-text-muted: rgba(255,255,255,0.85);
+  --color-border: rgba(255,255,255,0.12);
+} 
 
 /* --- Reset & Base --- */
 *,
