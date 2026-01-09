@@ -6,44 +6,51 @@
 // DATA MODEL — Modifica qui i tuoi link
 // ============================================
 const PROFILE = {
-  name: "Dirty Tag",
+  name: "DIRTY TAG",
   bio: "Find it. Love it. Get it Dirty Again.",
-  avatar: "https://api.dicebear.com/7.x/initials/svg?seed=DT&backgroundColor=E63946&textColor=ffffff&fontSize=40"
+  avatar: "https://imgur.com/a/7HHnqwr"
 };
 
 const LINKS = [
   {
-    id: "shop",
-    label: "Shop su Catawiki",
-    url: "https://www.catawiki.com/seller/dirtytag",
-    category: "shop",
+    id: "catawiki",
+    label: "Aste su Catawiki",
+    url: "https://www.catawiki.com/it/u/25629511-dirty-tag",
+    category: "catawiki",
+    icon: "shopping-bag"
+  },
+  {
+    id: "vestiaire",
+    label: "Vestiaire Collective",
+    url: "https://www.vestiairecollective.com/profile/14768643",
+    category: "vestiaire",
     icon: "shopping-bag"
   },
   {
     id: "vinted",
-    label: "Vinted Store",
-    url: "https://www.vinted.it/member/dirtytag",
-    category: "shop",
+    label: "Vinted Worn Pics",
+    url: "https://www.vinted.it/member/249872468",
+    category: "vinted",
+    icon: "tag"
+  },
+  {
+    id: "vinted2",
+    label: "Vinted Mannequin Pics",
+    url: "https://www.vinted.it/member/212733559",
+    category: "vinted",
     icon: "tag"
   },
   {
     id: "instagram",
     label: "Instagram",
-    url: "https://www.instagram.com/dirtytag_vintage",
-    category: "social",
-    icon: "instagram"
-  },
-  {
-    id: "tiktok",
-    label: "TikTok",
-    url: "https://www.tiktok.com/@dirtytag",
+    url: "https://www.instagram.com/dirty_tag/",
     category: "social",
     icon: "video"
   },
   {
     id: "contact",
     label: "Contattaci",
-    url: "mailto:info@dirtytag.com",
+    url: "mailto:info.dirtytag@gmail.com",
     category: "info",
     icon: "mail"
   }
