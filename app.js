@@ -241,16 +241,9 @@ function renderLinks() {
       <span class="link-card-icon" aria-hidden="true">${getIcon(link.icon)}</span>
       <span class="link-card-label">${link.label}</span>
       <span class="link-card-arrow" aria-hidden="true">${getIcon("arrow-right")}</span>
-      ${clicks > 0 ? `<span class="link-card-badge" aria-label="${clicks} click">${clicks}</span>` : ""}
     `;
     
-    card.addEventListener("click", (e) => {
-      // Incrementa contatore (il link si apre comunque)
-      incrementClick(link.id);
-      
-      // Re-render per aggiornare badge
-      setTimeout(() => renderLinks(), 100);
-    });
+    // No click tracking UI: clicking the card opens the link in a new tab without showing a badge.
     
     $linksContainer.appendChild(card);
   });
