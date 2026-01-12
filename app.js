@@ -13,45 +13,59 @@ const PROFILE = {
 
 const LINKS = [
   {
-    id: "catawiki",
-    label: "Aste su Catawiki",
-    url: "https://www.catawiki.com/it/u/25629511-dirty-tag",
-    category: "catawiki",
-    icon: "shopping-bag"
+    id: "vinted-mannequin",
+    label: "Vinted Mannequin",
+    url: "https://www.vinted.it/member/212733559",
+    categories: ["general", "shop"],
+    icon: "tag"
+  },
+  {
+    id: "vinted-worn",
+    label: "Vinted Worn Pics",
+    url: "https://www.vinted.it/member/249872468",
+    categories: ["shop"],
+    icon: "tag"
   },
   {
     id: "vestiaire",
     label: "Vestiaire Collective",
     url: "https://www.vestiairecollective.com/profile/14768643",
-    category: "vestiaire",
+    categories: ["general", "shop"],
     icon: "shopping-bag"
   },
   {
-    id: "vinted",
-    label: "Vinted Worn Pics",
-    url: "https://www.vinted.it/member/249872468",
-    category: "vinted",
-    icon: "tag"
-  },
-  {
-    id: "vinted2",
-    label: "Vinted Mannequin Pics",
-    url: "https://www.vinted.it/member/212733559",
-    category: "vinted",
-    icon: "tag"
+    id: "catawiki",
+    label: "Aste Catawiki",
+    url: "https://www.catawiki.com/it/u/25629511-dirty-tag",
+    categories: ["shop"],
+    icon: "gavel"
   },
   {
     id: "instagram",
     label: "Instagram",
     url: "https://www.instagram.com/dirty_tag/",
-    category: "social",
+    categories: ["general", "social"],
+    icon: "instagram"
+  },
+  {
+    id: "tiktok",
+    label: "TikTok",
+    url: "https://www.tiktok.com/@dirty.tag",
+    categories: ["social"],
     icon: "video"
   },
   {
-    id: "contact",
-    label: "Contattaci",
+    id: "whatsapp",
+    label: "WhatsApp",
+    url: "https://wa.me/393204719277",
+    categories: ["general", "contatti"],
+    icon: "message-circle"
+  },
+  {
+    id: "email",
+    label: "Email",
     url: "mailto:info.dirtytag@gmail.com",
-    category: "info",
+    categories: ["contatti"],
     icon: "mail"
   }
 ];
@@ -60,7 +74,8 @@ const CATEGORIES = [
   { id: "all", label: "Tutti" },
   { id: "shop", label: "Shop" },
   { id: "social", label: "Social" },
-  { id: "info", label: "Info" }
+  { id: "general", label: "Generale" },
+  { id: "contatti", label: "Contatti" }
 ];
 
 // ============================================
@@ -207,10 +222,13 @@ function renderCategories() {
 }
 
 function renderLinks() {
-  // Filtra link per categoria
-  const filteredLinks = activeCategory === "all" 
-    ? LINKS 
-    : LINKS.filter(link => link.category === activeCategory);
+  // Filtra link per categoria (supporta array di categories)
+  const filteredLinks = activeCategory === "all"
+    ? LINKS
+    : LINKS.filter(link => {
+      const cats = Array.isArray(link.categories) ? link.categories : (link.categories ? [link.categories] : []);
+      return cats.includes(activeCategory);
+    });
   
   // Valida link (deve avere URL)
   const validLinks = filteredLinks.filter(link => {
