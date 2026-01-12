@@ -8,7 +8,7 @@
 const PROFILE = {
   name: "DIRTY TAG",
   bio: "Find it. Love it. Get it Dirty Again.",
-  avatar: "./logo.png"
+  avatar: "images/logo.png"
 };
 
 const LINKS = [
