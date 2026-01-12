@@ -71,7 +71,6 @@ const LINKS = [
 ];
 
 const CATEGORIES = [
-  { id: "all", label: "Tutti" },
   { id: "general", label: "Generale" },
   { id: "shop", label: "Shop" },
   { id: "social", label: "Social" },
@@ -94,8 +93,8 @@ const ICONS = {
 // ============================================
 // STATE
 // ============================================
-let activeCategory = "all";
-let clickCounts = {};
+let activeCategory = "general";
+let clickCounts = {}; 
 
 // ============================================
 // DOM ELEMENTS
@@ -223,12 +222,10 @@ function renderCategories() {
 
 function renderLinks() {
   // Filtra link per categoria (supporta array di categories)
-  const filteredLinks = activeCategory === "all"
-    ? LINKS
-    : LINKS.filter(link => {
-      const cats = Array.isArray(link.categories) ? link.categories : (link.categories ? [link.categories] : []);
-      return cats.includes(activeCategory);
-    });
+  const filteredLinks = LINKS.filter(link => {
+    const cats = Array.isArray(link.categories) ? link.categories : (link.categories ? [link.categories] : []);
+    return cats.includes(activeCategory);
+  });
   
   // Valida link (deve avere URL)
   const validLinks = filteredLinks.filter(link => {
@@ -289,7 +286,7 @@ function init() {
 
   // React to hash changes (back/forward + manual edits)
   window.addEventListener('hashchange', () => {
-    const newHash = (location.hash || '').replace('#','') || 'all';
+    const newHash = (location.hash || '').replace('#','') || 'general';
     if (newHash !== activeCategory && CATEGORIES.some(c => c.id === newHash)) {
       activeCategory = newHash;
       renderCategories();
