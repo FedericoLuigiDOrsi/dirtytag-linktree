@@ -191,9 +191,15 @@ function renderCategories() {
     }
     
     chip.addEventListener("click", () => {
-      activeCategory = cat.id;
-      renderCategories();
-      renderLinks();
+      // Use hash to enable deep-linking and browser history
+      const currentHash = location.hash.replace('#','') || 'all';
+      if (currentHash !== cat.id) {
+        location.hash = cat.id;
+      } else {
+        // If already on same hash, re-render to keep UI consistent
+        renderCategories();
+        renderLinks();
+      }
     });
     
     $categoryFilter.appendChild(chip);
@@ -256,6 +262,22 @@ function init() {
   // Carica stato persistente
   loadClickCounts();
   setTheme(getPreferredTheme());
+
+  // Sync initial category from URL hash (deep-linking)
+  const initHash = (location.hash || '').replace('#','');
+  if (initHash && CATEGORIES.some(c => c.id === initHash)) {
+    activeCategory = initHash;
+  }
+
+  // React to hash changes (back/forward + manual edits)
+  window.addEventListener('hashchange', () => {
+    const newHash = (location.hash || '').replace('#','') || 'all';
+    if (newHash !== activeCategory && CATEGORIES.some(c => c.id === newHash)) {
+      activeCategory = newHash;
+      renderCategories();
+      renderLinks();
+    }
+  });
   
   // Simula loading (300ms)
   setTimeout(() => {
