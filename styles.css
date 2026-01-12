@@ -65,7 +65,46 @@ body.brand {
   --color-text: var(--dt-white);
   --color-text-muted: rgba(255,255,255,0.85);
   --color-border: rgba(255,255,255,0.12);
-} 
+
+  /* Background images (fallback to PNG — WebP conversion not available in this environment) */
+  --bg-mobile: url('images/bg-1x.png');
+  --bg-2x: url('images/bg-2x.png');
+  --bg-overlay: rgba(0, 0, 0, 0.35);
+  --bg-blur: 6px;
+}
+
+/* Blurred background layer (separate pseudo-element) */
+body.brand::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--bg-mobile);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(var(--bg-blur));
+  transform: scale(1.04);
+  z-index: -3;
+  will-change: transform, filter;
+  pointer-events: none;
+}
+
+/* High-res displays use the 2x asset */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body.brand::before {
+    background-image: var(--bg-2x);
+  }
+}
+
+/* overlay for contrast */
+body.brand::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay);
+  z-index: -2;
+  pointer-events: none;
+}
 
 /* --- Reset & Base --- */
 *,
