@@ -72,9 +72,9 @@ const LINKS = [
 
 const CATEGORIES = [
   { id: "all", label: "Tutti" },
+  { id: "general", label: "Generale" },
   { id: "shop", label: "Shop" },
   { id: "social", label: "Social" },
-  { id: "general", label: "Generale" },
   { id: "contatti", label: "Contatti" }
 ];
 
