@@ -1,85 +1,200 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dirty Tag - Find it. Love it. Get it Dirty Again.">
-  <title>Dirty Tag | Links</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dirty Tag — Find it. Love it. Get it Dirty Again. Resale vintage.">
+<title>Dirty Tag | Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Narrow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E4DCCB;
+    --paper-dark:#D8CFBA;
+    --paper-edge:#CdC2AA;
+    --ink:#161310;
+    --ink-soft:#46413A;
+    --red:#CE2018;
+    --red-deep:#A4160F;
+    --stitch:#94896F;
+    --mono:'IBM Plex Mono',monospace;
+    --cond:'Archivo Narrow',sans-serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    min-height:100svh;background:#0b0a09;color:var(--ink);
+    font-family:var(--mono);-webkit-font-smoothing:antialiased;
+    display:flex;align-items:flex-start;justify-content:center;
+    padding:30px 14px 44px;overflow-x:hidden;
+  }
+  body::before{content:'';position:fixed;inset:0;z-index:0;
+    background:radial-gradient(120% 70% at 50% -5%,#221f1a,#090807 70%);}
+  body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .hang{position:relative;z-index:1;width:100%;max-width:366px;
+    filter:drop-shadow(0 30px 50px rgba(0,0,0,.6)) drop-shadow(0 2px 6px rgba(0,0,0,.4));}
+
+  .tag{
+    position:relative;background:var(--paper);
+    background-image:
+      radial-gradient(60% 50% at 18% 12%,rgba(120,80,40,.10),transparent 60%),
+      radial-gradient(45% 40% at 88% 78%,rgba(90,60,30,.12),transparent 60%),
+      radial-gradient(30% 22% at 70% 30%,rgba(60,40,20,.08),transparent 60%),
+      repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.014) 3px 4px),
+      repeating-linear-gradient(90deg,transparent 0 3px,rgba(0,0,0,.014) 3px 4px);
+    padding:9px;
+    clip-path:polygon(
+      0% 0,5.56% 8px,11.11% 0,16.67% 8px,22.22% 0,27.78% 8px,33.33% 0,38.89% 8px,44.44% 0,
+      50% 8px,55.56% 0,61.11% 8px,66.67% 0,72.22% 8px,77.78% 0,83.33% 8px,88.89% 0,94.44% 8px,100% 0,
+      100% 100%,94.44% calc(100% - 8px),88.89% 100%,83.33% calc(100% - 8px),77.78% 100%,72.22% calc(100% - 8px),
+      66.67% 100%,61.11% calc(100% - 8px),55.56% 100%,50% calc(100% - 8px),44.44% 100%,38.89% calc(100% - 8px),
+      33.33% 100%,27.78% calc(100% - 8px),22.22% 100%,16.67% calc(100% - 8px),11.11% 100%,5.56% calc(100% - 8px),0% 100%);
+    animation:drop .7s var(--ease) both;
+  }
+  @keyframes drop{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+  /* worn edges */
+  .tag::after{content:'';position:absolute;inset:0;pointer-events:none;
+    box-shadow:inset 0 0 22px rgba(60,40,20,.14),inset 0 0 60px rgba(60,40,20,.06);}
+
+  .inner{padding:22px 22px 18px;position:relative;}
+
+  .brandline{display:flex;align-items:flex-start;justify-content:space-between;
+    border-bottom:2.5px solid var(--ink);padding-bottom:12px;}
+  .brandwrap{position:relative;}
+  .brand{font-family:'Anton',var(--cond);font-weight:400;font-size:50px;line-height:.82;
+    letter-spacing:.005em;text-transform:uppercase;}
+  .brand .t{color:var(--red);}
+  .brand sup{font-size:16px;color:var(--red);font-family:var(--cond);font-weight:700;top:-1.4em;}
+  /* red marker underline */
+  .marker{display:block;width:168px;height:11px;margin-top:5px;}
+  .marker path{fill:none;stroke:var(--red);stroke-width:5;stroke-linecap:round;opacity:.92;}
+  /* logo seal */
+  .seal{width:54px;height:54px;border-radius:50%;background:#0E0C0B;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;
+    border:2px solid var(--ink);box-shadow:1px 1px 0 rgba(0,0,0,.25);}
+  .seal img{width:48px;height:48px;object-fit:contain;transform:scale(1.42);}
+  .tagline{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;margin-top:11px;
+    display:flex;justify-content:space-between;gap:10px;}
+  .tagline .a{color:var(--ink-soft);}
+  .tagline .b{color:var(--red);font-weight:600;}
+
+  .care{display:flex;gap:16px;justify-content:center;font-size:20px;margin:18px 0;
+    border-top:1px dotted var(--stitch);border-bottom:1px dotted var(--stitch);padding:12px 0;color:var(--ink);}
+  .care span{transition:color .15s,transform .15s;}
+  .care span:hover{color:var(--red);transform:scale(1.18) rotate(-4deg);}
+
+  .grade{display:flex;align-items:center;justify-content:space-between;
+    font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+    margin:-6px 0 4px;}
+  .grade b{color:var(--red);font-weight:700;}
+
+  .section-tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);
+    font-weight:700;margin:16px 0 4px 1px;display:flex;align-items:center;gap:6px;}
+  .section-tag::before{content:'';width:10px;height:2px;background:var(--red);}
+
+  .rows{list-style:none;}
+  .rows a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);
+    padding:11px 2px;border-bottom:1px dotted var(--stitch);position:relative;
+    transition:background .15s,padding-left .15s;
+    opacity:0;transform:translateY(6px);animation:rowin .5s var(--ease) forwards;}
+  @keyframes rowin{to{opacity:1;transform:none}}
+  .rows a::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--red);
+    transition:width .16s var(--ease);}
+  .rows a:hover,.rows a:focus-visible{background:var(--paper-dark);padding-left:12px;outline:none;}
+  .rows a:hover::before,.rows a:focus-visible::before{width:3px;}
+  .rows a:hover .arrow,.rows a:focus-visible .arrow{color:var(--red);transform:translateX(3px);}
+  .name{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:16px;}
+  .leader{flex:1;border-bottom:1.5px dotted var(--stitch);height:1px;margin:0 5px;min-width:14px;}
+  .meta{font-size:10px;color:var(--ink-soft);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;}
+  .arrow{color:var(--red);transition:.15s;font-family:var(--cond);font-weight:700;font-size:16px;}
+
+  .footer{margin-top:20px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+    border-top:2.5px solid var(--ink);padding-top:14px;}
+  .barcode{height:48px;flex:1;display:flex;gap:2px;align-items:stretch;max-width:210px;}
+  .barcode i{background:var(--ink);display:block;}
+  .made{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;text-align:right;
+    color:var(--ink-soft);line-height:1.6;}
+  .made b{color:var(--red);}
+
+  .thanks{margin-top:16px;padding-top:14px;border-top:1px dashed var(--stitch);
+    text-align:center;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-soft);}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;}
+    .rows a{opacity:1;transform:none;}
+    .tag{transform:rotate(-1.4deg);}
+  }
+  @media (max-width:380px){
+    .inner{padding:32px 17px 20px;}
+    .brand{font-size:34px;}
+    .marker{width:128px;}
+  }
+</style>
 </head>
-<body class="brand">
-  <div class="container">
-    <!-- Loading State -->
-    <div id="loading" class="loading-state" aria-live="polite">
-      <div class="skeleton skeleton-avatar"></div>
-      <div class="skeleton skeleton-text skeleton-title"></div>
-      <div class="skeleton skeleton-text skeleton-bio"></div>
-      <div class="skeleton skeleton-card"></div>
-      <div class="skeleton skeleton-card"></div>
-      <div class="skeleton skeleton-card"></div>
-    </div>
+<body>
+  <main class="hang">
+    <div class="tag">
+      <div class="inner">
+        <div class="brandline">
+          <div class="brandwrap">
+            <h1 class="brand">Dirty<br><span class="t">Tag</span><sup>®</sup></h1>
+            <svg class="marker" viewBox="0 0 168 11" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M3 7 C 44 2, 88 9, 130 4 C 146 2, 158 6, 165 5"/>
+            </svg>
+          </div>
+          <span class="seal"><img src="images/logo.png" alt="Dirty Tag"></span>
+        </div>
+        <p class="tagline"><span class="a">Find it · Love it</span><span class="b">Get it Dirty Again</span></p>
 
-    <!-- Main Content -->
-    <main id="content" class="content hidden" role="main">
-      <!-- Profile Header -->
-      <header class="profile-header">
-        <img 
-          id="avatar" 
-          class="avatar" 
-          src="" 
-          alt="Dirty Tag profile picture"
-          loading="lazy"
-        >
-        <h1 id="profile-name" class="profile-name"></h1>
-        <p id="profile-bio" class="profile-bio"></p>
-      </header>
+        <div class="care" aria-hidden="true">
+          <span title="Authentic">⌾</span>
+          <span title="No fakes">△</span>
+          <span title="Pressed">⊡</span>
+          <span title="Curated">⊗</span>
+          <span title="Premium">Ⓟ</span>
+        </div>
 
-      <!-- Category Filter -->
-      <nav id="category-filter" class="category-filter" role="navigation" aria-label="Filtra per categoria">
-      </nav>
+        <div class="grade">
+          <span>Condition · <b>Graded</b></span>
+          <span>Lot N° <b>0719</b></span>
+        </div>
 
-      <!-- Links Section -->
-      <section id="links-container" class="links-container" aria-label="Link utili">
-      </section>
+        <p class="section-tag">Shop</p>
+        <ul class="rows">
+          <li><a href="https://www.vinted.it/member/212733559" target="_blank" rel="noopener" style="animation-delay:.05s"><span class="name">Vinted</span><span class="leader"></span><span class="meta">resale</span><span class="arrow">→</span></a></li>
+          <li><a href="https://www.vestiairecollective.com/profile/14768643" target="_blank" rel="noopener" style="animation-delay:.1s"><span class="name">Vestiaire</span><span class="leader"></span><span class="meta">luxury</span><span class="arrow">→</span></a></li>
+          <li><a href="https://www.catawiki.com/it/u/25629511-dirty-tag" target="_blank" rel="noopener" style="animation-delay:.15s"><span class="name">Catawiki</span><span class="leader"></span><span class="meta">aste</span><span class="arrow">→</span></a></li>
+        </ul>
 
-      <!-- Empty State -->
-      <div id="empty-state" class="empty-state hidden">
-        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-        </svg>
-        <p>Nessun link disponibile</p>
+        <p class="section-tag">Social</p>
+        <ul class="rows">
+          <li><a href="https://www.instagram.com/dirty_tag/" target="_blank" rel="noopener" style="animation-delay:.2s"><span class="name">Instagram</span><span class="leader"></span><span class="meta">@dirty_tag</span><span class="arrow">→</span></a></li>
+          <li><a href="https://www.tiktok.com/@dirty_tag" target="_blank" rel="noopener" style="animation-delay:.25s"><span class="name">TikTok</span><span class="leader"></span><span class="meta">@dirty_tag</span><span class="arrow">→</span></a></li>
+        </ul>
+
+        <p class="section-tag">Contatti</p>
+        <ul class="rows">
+          <li><a href="https://wa.me/393345378484" target="_blank" rel="noopener" style="animation-delay:.3s"><span class="name">WhatsApp</span><span class="leader"></span><span class="meta">scrivici</span><span class="arrow">→</span></a></li>
+        </ul>
+
+        <div class="footer">
+          <div class="barcode" id="bc" aria-hidden="true"></div>
+          <p class="made"><b>@dirty_tag</b><br>Napoli · IT<br>Resale only</p>
+        </div>
+        <p class="thanks">★ Grazie · Get it Dirty Again ★</p>
       </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <button 
-        id="theme-toggle" 
-        class="theme-toggle" 
-        aria-label="Cambia tema"
-        type="button"
-      >
-        <svg id="icon-sun" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"/>
-          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-        </svg>
-        <svg id="icon-moon" class="theme-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </button>
-      <span class="footer-text">© 2025 Dirty Tag</span>
-    </footer>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast hidden" role="alert" aria-live="assertive">
-      <span id="toast-message"></span>
     </div>
-  </div>
-
-  <script src="app.js"></script>
+  </main>
+  <script>
+    const bc=document.getElementById('bc');let h='';
+    for(let i=0;i<34;i++){const w=(Math.random()*4+2.5).toFixed(1);h+=`<i style="width:${w}px;${Math.random()>.62?'opacity:0':''}"></i>`}
+    bc.innerHTML=h;
+  </script>
 </body>
 </html>
